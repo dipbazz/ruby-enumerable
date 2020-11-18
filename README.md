@@ -4,7 +4,7 @@
 
 ## Definition
 
-In Ruby Enumerable are a set of convinent built-in methods that works as a loop with added functionality which make it much more convenient to use instead of different types of loops. 
+In Ruby Enumerable are a set of convinent built-in methods that works as a loop with added functionality which make it much more convenient to use instead of different types of loops.
 
 Below is an simple example to demostrate how enumerable methods are convenient over loops.
 
@@ -23,7 +23,7 @@ friends.each { |friend| puts "Hello, #{friend} }
 ## About the Project
 
 In this project we have implemented some [Enumerable](https://ruby-doc.org/core-2.7.2/Enumerable.html) methods by our selves. Custom Enumerable method that we created has prefix `my_` and after that actual enumerable name. So, the `#map` enumerable translate to `#my_map` method in our code. Different enumerable method that we implemented are: `#my_each`, `#my_each_with_index`, `#my_select`, `#my_all?`, `#my_any?`, `#my_none?`, `#my_count`, `#my_map`, and  `#my_inject`.
-      
+
 ## Built With
 
 - Ruby
@@ -42,7 +42,7 @@ In this project we have implemented some [Enumerable](https://ruby-doc.org/core-
 
    - Clone this repo.
    - Navigate to the ruby-enumerable folder
-   - In your terminal run `ruby main.rb`
+   - In your terminal run `ruby enumerable.rb`
    - You are successful to get a local copy up and running.
 
 
@@ -59,6 +59,12 @@ In this project we have implemented some [Enumerable](https://ruby-doc.org/core-
 - GitHub: [@cyonii](https://github.com/cyonii)
 - Twitter: [@theOnuoha](https://twitter.com/theOnuoha)
 - LinkedIn: [Silas Kalu](https://www.linkedin.com/in/silas-kalu-2a9a13199/)
+
+👤 **Divyesh Patel**
+
+- GitHub: [@Div685](https://github.com/Div685)
+- Twitter: [@div_685](https://twitter.com/div_685)
+- LinkedIn: [Divyesh Patel](https://www.linkedin.com/in/divyesh-patel-2a15a6107)
 
 
 ## 🤝 Contributing
