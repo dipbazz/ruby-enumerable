@@ -109,7 +109,7 @@ module Enumerable
     raise ArgumentError, "wrong number of arguments (given #{args.length}, expected 0..2)" if args.length > 2
 
     if args.length == 1
-      if args[0].is_a?(Symbol) or args[0].to_s.match(%r{[\+\-\*/]})
+      if args[0].is_a?(Symbol) or args[0].to_s.match(%r{[+\-*/]})
         operator = args[0].to_sym
       else
         initial = args[0]
