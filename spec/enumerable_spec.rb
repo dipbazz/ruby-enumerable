@@ -142,7 +142,7 @@ describe Enumerable do
             end
         end
     end
-    
+
     describe '#my_count' do
         it 'returns the size of an array' do
             expect(arr_num.my_count).to eql(arr_num.count)
@@ -163,12 +163,46 @@ describe Enumerable do
         end
 
         it 'returns Enumerable if proc and block both are not given' do
-            expect(arr_num.my_map).to be_kind_of(Enumerable) 
+            expect(arr_num.my_map).to be_kind_of(Enumerable)
         end
 
         it 'returns proc if proc given' do
             my_proc = proc { |i| i *i }
             expect(arr_num.my_map(my_proc)).to eql([1, 4, 9, 16, 25])
-        end 
+        end
+    end
+
+    describe '#my_inject' do
+        it 'returns the sum of element from enumerator' do
+            expect(arr_num.my_inject(:+)).to eql(arr_num.inject(:+))
+        end
+
+        it 'returns the sum of element from enumerator' do
+            expect(arr_num.my_inject('+')).to eql(arr_num.inject(:+))
+        end
+
+        it 'returns the product of element from enumerator' do
+            expect(arr_num.my_inject(3, :*)).to eql(arr_num.inject(3, :*))
+        end
+
+        it 'returns the result after calculation from given block and argument' do
+            expect(arr_num.my_inject(2) { |product, i| product * i }).to eql(arr_num.inject(2) { |product, i| product * i })
+        end
+
+        it 'returns the result after calculation from given block' do
+            expect(arr_num.my_inject { |sum, i| sum + i }).to eql(arr_num.inject { |sum, i| sum + i })
+        end
+
+        it 'returns the longest value in array' do
+            expect(arr_string.my_inject { |x, y|  x.length > y.length ? x : y }).to eql('string')
+        end
+
+        it 'raises LocalJumpError if no block given' do
+            expect{ arr_num.my_inject }.to raise_error(LocalJumpError)
+        end
+
+        it 'raises ArgumentError if wrong number of argument given' do
+            expect{ arr_num.my_inject(1,2,3) }.to raise_error(ArgumentError)
+        end
     end
 end
