@@ -45,6 +45,11 @@ In this project we have implemented some [Enumerable](https://ruby-doc.org/core-
    - In your terminal run `ruby enumerable.rb`
    - You are successful to get a local copy up and running.
 
+**To test the code with rspec.**
+  - install rspec using `gem install rspec` 
+  - run `rspec` or `rspec --format doc` on your terminal to test the code .
+  
+
 
 ## Authors
 
