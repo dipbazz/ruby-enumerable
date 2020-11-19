@@ -89,11 +89,11 @@ describe Enumerable do
 
             it 'has any truthy element ' do
                 expect(arr_with_false.my_any?).to eql(true)
-            end 
+            end
         end
 
         context "When it's a falsey" do
-            
+
             it 'it does not match with regular expression' do
                 expect(arr_string.my_any?(/d/)).to eql(false)
             end
@@ -102,6 +102,44 @@ describe Enumerable do
                 expect([].my_any?).to eql(false)
             end
 
+        end
+    end
+
+    describe '#my_none?' do
+        context 'when its truthy' do
+            it 'has all false value in array' do
+                expect([nil, false].my_none?).to eql(true)
+            end
+
+            it 'has one true value in array' do
+                expect(arr_num.my_none?(String)).to eql(true)
+            end
+
+            it 'has all false value with condition' do
+                expect(arr_string.my_none? { |word| word.length >= 7 }).to eql(true)
+            end
+
+            it 'fails to match regular expression' do
+                expect(arr_string.my_none?(/d/)).to eql(true)
+            end
+
+            it 'has empty array' do
+                expect([].my_none?).to eql(true)
+            end
+        end
+
+        context 'when its falsey' do
+            it 'has any one truthy value' do
+                expect(arr_string.my_none? { |word| word.length >= 1 }).to eql(false)
+            end
+
+            it 'is has any one truthy value' do
+                expect(arr_with_false.my_none?).to eql(false)
+            end
+
+            it 'matches one element with regular expression' do
+                expect(arr_string.my_none?(/a/)).to eql(false)
+            end
         end
     end
 end
