@@ -1,6 +1,7 @@
 # rubocop:disable Metrics/CyclomaticComplexity
 # rubocop:disable Metrics/PerceivedComplexity
 # rubocop:disable Style/For
+# rubocop:disable Metrics/MethodLength
 module Enumerable
   def my_each
     return to_enum(:my_each) unless block_given?
@@ -108,13 +109,14 @@ module Enumerable
   def my_inject(*args)
     raise ArgumentError, "wrong number of arguments (given #{args.length}, expected 0..2)" if args.length > 2
 
-    if args.length == 1
+    case args.length
+    when 1
       if args[0].is_a?(Symbol) or args[0].to_s.match(%r{[+\-*/]})
         operator = args[0].to_sym
       else
         initial = args[0]
       end
-    elsif args.length == 2
+    when 2
       initial = args[0]
       operator = args[1].to_sym
     end
@@ -136,6 +138,7 @@ def multiply_els(array)
   array.my_each { |i| product *= i }
   product
 end
+# rubocop:enable Metrics/MethodLength
 # rubocop:enable Metrics/CyclomaticComplexity
 # rubocop:enable Metrics/PerceivedComplexity
 # rubocop:enable Style/For
