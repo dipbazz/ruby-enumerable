@@ -142,4 +142,33 @@ describe Enumerable do
             end
         end
     end
+    
+    describe '#my_count' do
+        it 'returns the size of an array' do
+            expect(arr_num.my_count).to eql(arr_num.count)
+        end
+
+        it 'returns size of argument' do
+            expect(arr_num.my_count(2)).to eql(arr_num.count(2))
+        end
+
+        it 'returns the value based on given block condition' do
+            expect(arr_num.my_count { |i| i%2 ==0 }).to eql(arr_num.count { |i| i %2 == 0 })
+        end
+    end
+
+    describe '#my_map' do
+        it 'returns block if proc is not given' do
+            expect(arr_num.my_map  { |i| i *i }).to eql(arr_num.map { |i| i * i})
+        end
+
+        it 'returns Enumerable if proc and block both are not given' do
+            expect(arr_num.my_map).to be_kind_of(Enumerable) 
+        end
+
+        it 'returns proc if proc given' do
+            my_proc = proc { |i| i *i }
+            expect(arr_num.my_map(my_proc)).to eql([1, 4, 9, 16, 25])
+        end 
+    end
 end
