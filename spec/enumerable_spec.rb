@@ -3,7 +3,7 @@ require_relative '../enumerable'
 
 describe Enumerable do
     let (:arr_num) { [1,2,3,4,5] }
-    let (:arr_with_false) { [1, 2, 3, 4, 5, nil]}
+    let (:arr_with_false) { [1, 2, 3, 4, 5, nil, true]}
     let (:arr_string) { %w[this is a test string]}
 
     describe "#my_each" do
@@ -57,10 +57,6 @@ describe Enumerable do
                 expect(arr_string.my_all?(/t/)).to eql(false)
             end
 
-            it 'fails the condition by any one element in array' do
-                expect(arr_string.my_all? { |word| word.length >= 3 }).to eql(false)
-            end
-
             it 'fails any element to be numeric value' do
                 expect(arr_string.my_all?(Numeric)).to eql(false)
             end
@@ -74,6 +70,38 @@ describe Enumerable do
             it 'is an empty array' do
                 expect([].my_all?).to eql(true)
             end
+        end
+    end
+
+    describe '#my_any?' do
+        context "When it's Truthy" do
+            it 'has any one of the element is true' do
+                expect(arr_string.my_any? { |i| i.length >=3 }).to eql(true)
+            end
+
+            it 'has any one of the element is satisfy the condition' do
+                expect(arr_string.my_any? { |i| i.length >=6 } ).to eql(true)
+            end
+
+            it 'has any one of the element is Numeric ' do
+                expect(arr_with_false.my_any?(Integer)).to eql(true)
+            end
+
+            it 'has any truthy element ' do
+                expect(arr_with_false.my_any?).to eql(true)
+            end 
+        end
+
+        context "When it's a falsey" do
+            
+            it 'it does not match with regular expression' do
+                expect(arr_string.my_any?(/d/)).to eql(false)
+            end
+
+            it 'it is an empty array' do
+                expect([].my_any?).to eql(false)
+            end
+
         end
     end
 end
